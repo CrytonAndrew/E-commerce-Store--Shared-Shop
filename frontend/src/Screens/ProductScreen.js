@@ -1,14 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom"
 import {Row, Col, Image, ListGroup, Card, Button, ListGroupItem, ButtonGroup} from "react-bootstrap"
 import Rating from "../components/Rating"
-import products from "../products";
+// import products from "../products";
+import axios from 'axios';
 
 // "match" is used to access the param property that stores the id from the link of product chosen
 const ProductScreen = (props) => {
-    let product = products.find((p) => (
-        p._id === props.match.params.id
-    ));
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        const fectProduct = async () => {
+            const {data} = await axios.get(`/api/products/${props.match.params.id}`)
+            
+            setProduct(data)
+        }
+        fectProduct()
+    },[props.match])
 
     return (
         <>
@@ -29,7 +37,7 @@ const ProductScreen = (props) => {
                             Price: ${product.price}
                         </ListGroupItem>
                         <ListGroupItem>
-                            Description: ${product.description}
+                            Description: {product.description}
                         </ListGroupItem>
                     </ListGroup>
                 </Col>

@@ -78,5 +78,8 @@ const products = [
     numReviews: 12,
   },
 ]
-
+// Using common js:
 export default products
+
+// Below is common ES modules which is not yet setup 
+// export default products
