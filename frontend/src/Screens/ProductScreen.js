@@ -1,27 +1,29 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
 import {Link} from "react-router-dom"
 import {Row, Col, Image, ListGroup, Card, Button, ListGroupItem, ButtonGroup} from "react-bootstrap"
+import {useDispatch, useSelector} from "react-redux"
 import Rating from "../components/Rating"
-// import products from "../products";
-import axios from 'axios';
+import {listProductDetails} from "../actions/productActions"
+import Loader from "../components/Loader"
+import Message from "../components/Message"
 
 // "match" is used to access the param property that stores the id from the link of product chosen
 const ProductScreen = (props) => {
-    const [product, setProduct] = useState({})
+    const dispatch = useDispatch() //Dispatch the action that we just created 
 
+    const productDetails = useSelector(state => state.productDetails) // Getting the product from state 
+    const {loading, error, product} = productDetails
     useEffect(() => {
-        const fectProduct = async () => {
-            const {data} = await axios.get(`/api/products/${props.match.params.id}`)
-            
-            setProduct(data)
-        }
-        fectProduct()
-    },[props.match])
+      dispatch(listProductDetails(props.match.params.id))
+
+    },[dispatch, props.match])
+
 
     return (
         <>
             <Link className="btn btn-dark my-3" to="/">Go Back</Link>
-            <Row>
+            {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
+                <Row>
                 <Col md={6} >
                    <Image src={product.image} alt={product.image} fluid/> 
                 </Col>
@@ -71,7 +73,8 @@ const ProductScreen = (props) => {
                     </ListGroup>
                 </Card>
                 </Col>
-            </Row>
+            </Row>)}
+            
         </>
     )
 }
