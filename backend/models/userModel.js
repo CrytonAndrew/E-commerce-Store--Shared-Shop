@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
 
 const userSchema = mongoose.Schema({
     name: {
@@ -20,6 +21,23 @@ const userSchema = mongoose.Schema({
         default: false
     }
 }, {timestamps: true})
+
+// Decrypt the password and hash the input to check the hashed to plain text
+userSchema.methods.matchPassword = async function(enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password)
+}
+
+// We can set certain things to happen on saves,  finds or other actions 
+// Middleware to encrypt the password before we save
+userSchema.pre('save', async function(next){
+    // Check whether the password field is not modified 
+    if (!this.isModified('password')) {
+        next()
+    }
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt) //resetting the password to be hashed value
+})
+
 
 const User = mongoose.model('User', userSchema)
 
