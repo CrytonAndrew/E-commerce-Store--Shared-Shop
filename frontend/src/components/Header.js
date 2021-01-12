@@ -1,12 +1,27 @@
 import React from 'react'
-import {Container, Navbar, Nav} from 'react-bootstrap'
+import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap'
+// To bring in anything from the state it useSelector
+// To call an action its useDispatch
+import {useDispatch, useSelector} from 'react-redux'
+
 // Here for the links we use the same thing from React-router-bootstrap as it does the same thing as React-router-dom 
 //Rather is allows us to wrap bootstrap components
 import {LinkContainer} from "react-router-bootstrap";
 
+import {logout} from '../actions/userActions.js'
+
 
 //React arrow function component 
 const Header = () => {
+    const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
+
+    const logoutHandler= () => {
+        dispatch(logout())
+    }
+
     return (
         <header>
         <Navbar bg="light" expand="lg" collapseOnSelect>
@@ -30,9 +45,20 @@ const Header = () => {
                 <LinkContainer to="/cart">
                 <Nav.Link><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/login">
-                <Nav.Link><i className="fas fa-user"></i>Sign In</Nav.Link>
-                </LinkContainer>
+                {userInfo ? (
+                    <NavDropdown title ={ userInfo.name} id='userName'>
+                    <LinkContainer to='/profile'>
+                    <NavDropdown.Item>profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                        LogOut
+                    </NavDropdown.Item>
+                    </NavDropdown>
+                ) : (
+                    <LinkContainer to="/login">
+                    <Nav.Link><i className="fas fa-user"></i>Sign In</Nav.Link>
+                    </LinkContainer>) 
+                }
                 </Nav>
 
             {/* The form to be implemented later */}
