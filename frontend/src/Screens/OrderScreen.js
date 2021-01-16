@@ -17,10 +17,10 @@ const OrderScreen = ({match}) => {
 
     const dispatch = useDispatch()
 
-    const orderDetails = useSelector(state => state.orderDetails)
+    const orderDetails = useSelector((state) => state.orderDetails)
     const {order, loading, error} = orderDetails
 
-    const orderPay = useSelector(state => state.orderPay)
+    const orderPay = useSelector((state) => state.orderPay)
     const {loading: loadingPay, success: successPay} = orderPay
 
     if (!loading) {
@@ -64,8 +64,8 @@ const OrderScreen = ({match}) => {
         dispatch(payOrder(orderId, paymentResult))
     }
 
-    return loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> :
-    <>
+    return loading ? (<Loader />) : error ? (<Message variant="danger">{error}</Message> ):
+    (<>
         <h1>Order: {order._id}</h1>
         <Row>
                 <Col md={8}>
@@ -80,12 +80,12 @@ const OrderScreen = ({match}) => {
                         {order.shippingAddress.postalCode}, {" "}
                         {order.shippingAddress.country}
                     </p>
-                    {order.isDelivered ? <Message variant="success">Delivered on {order.deliveredAt}</Message> : <Message variant="danger">Not Delivered</Message>}
+                    {order.isDelivered ? (<Message variant="success">Delivered on {order.deliveredAt}</Message>) : (<Message variant="danger">Not Delivered</Message>)}
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <h2>Payment Method</h2>
                     <p><strong>Method: </strong>{order.paymentMethod}</p>
-                    {order.isPaid ? <Message variant="success">Paid on {order.paidAt}</Message> : <Message variant="danger">Not Paid</Message>}
+                    {order.isPaid ? (<Message variant="success">Paid on {order.paidAt}</Message>) : (<Message variant="danger">Not Paid</Message>)}
                 </ListGroup.Item>
 
                 <ListGroup.Item>
@@ -158,7 +158,7 @@ const OrderScreen = ({match}) => {
                 </Card>
                 </Col>
             </Row>
-    </>
+    </>)
 }
 
 export default OrderScreen
