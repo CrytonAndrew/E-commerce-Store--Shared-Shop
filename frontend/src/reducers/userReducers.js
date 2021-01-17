@@ -12,7 +12,10 @@ import {
     USER_UPDATE_PROFILE_REQUEST, 
     USER_UPDATE_PROFILE_SUCCESS, 
     USER_UPDATE_PROFILE_FAIL, 
-    USER_DETAILS_RESET 
+    USER_DETAILS_RESET, 
+    USER_LIST_REQUEST,
+    USER_LIST_SUCCESS,
+    USER_LIST_FAIL
 } from "../constants/userConstants.js";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -72,6 +75,20 @@ export const userUpdateProfileReducer = (state = { }, action) => {
         case USER_UPDATE_PROFILE_SUCCESS: // Fetched the data successfully -> products contain the payload data
             return {loading: false, success: true ,userInfo: action.payload}
         case USER_UPDATE_PROFILE_FAIL: // Failed to fetch data
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    } 
+}
+
+export const userListReducer = (state = {users: []}, action) => {
+    // Evaluate the action 
+    switch (action.type) {
+        case USER_LIST_REQUEST: // Currenlty (loading: true) fetching the data
+            return {loading: true}
+        case USER_LIST_SUCCESS: // Fetched the data successfully -> products contain the payload data
+            return {loading: false ,users: action.payload}
+        case USER_LIST_FAIL: // Failed to fetch data
             return {loading: false, error: action.payload}
         default:
             return state
