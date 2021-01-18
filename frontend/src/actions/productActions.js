@@ -4,7 +4,10 @@ import {PRODUCT_LIST_FAIL,
      PRODUCT_LIST_REQUEST, 
      PRODUCT_DETAILS_FAIL, 
      PRODUCT_DETAILS_REQUEST,
-     PRODUCT_DETAILS_SUCCESS
+     PRODUCT_DETAILS_SUCCESS,
+     PRODUCT_DELETE_REQUEST,
+     PRODUCT_DELETE_SUCCESS,
+     PRODUCT_DELETE_FAIL
     } from "../constants/productConstants"
 
 
@@ -50,6 +53,34 @@ export const listProductDetails = (id) => async (dispatch) => { // Thunk allows 
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message //Getting our backend error in our frontend state
+        })
+    }
+}
+
+
+export const deleteProduct = (id) => async (dispatch, getState) => { // Thunk allows us to create asynchronous function (functions within functions)
+    try {
+        // Dispatch the request -> Calls in the reducer -> Sets loading to true
+        dispatch({type: PRODUCT_DELETE_REQUEST})
+
+        const {
+            userLogin: {userInfo},
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.delete(`/api/products/${id}`, config) // Fetching the data
+
+        dispatch({
+            type: PRODUCT_DELETE_SUCCESS, //Data recieved -> Calls reducer filling in the payload 
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DELETE_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message //Getting our backend error in our frontend state
         })
     }

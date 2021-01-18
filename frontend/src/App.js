@@ -32,8 +32,8 @@ function App() {
         <Route path="/placeorder" component={PlaceorderScreen}/>
         <Route path="/order/:id" component={OrderScreen}/>
          <Route path="/product/:id" component={ProductScreen}/>
-         <Route path="/admin/productlist" component={ProductListScreen}/>
          <Route path="/cart/:id?" component={CartScreen}/> {/*The id is optional*/}
+         <Route path="/admin/productlist" component={ProductListScreen}/>
          <Route path="/admin/userlist" component={UserListScreen} />
          <Route path="/admin/user/:id/edit" component={UserEditScreen}/>
          <Route path="/" component={HomeScreen} exact/>
