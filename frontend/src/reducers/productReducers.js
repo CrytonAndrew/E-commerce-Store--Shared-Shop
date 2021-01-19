@@ -7,7 +7,12 @@ import {
        PRODUCT_DETAILS_REQUEST,
        PRODUCT_DELETE_REQUEST,
        PRODUCT_DELETE_SUCCESS,
-       PRODUCT_DELETE_FAIL} from '../constants/productConstants'
+       PRODUCT_DELETE_FAIL,
+       PRODUCT_CREATE_REQUEST,
+       PRODUCT_CREATE_SUCCESS,
+       PRODUCT_CREATE_FAIL,
+       PRODUCT_CREATE_RESET
+    } from '../constants/productConstants'
 
 //Handles state for the product list that we see on the Home Screen
 //Parameters have the initial state(products with an empty array) and an action reducer 
@@ -48,6 +53,23 @@ export const productDeleteReducer = (state = {}, action) => {
             return {loading: false, success: true}
         case PRODUCT_DELETE_FAIL: // Failed to fetch data
             return {loading: false, error: action.payload}
+        default:
+            return state
+    } 
+}
+
+
+export const productCreateReducer = (state = {}, action) => {
+    // Evaluate the action 
+    switch (action.type) {
+        case PRODUCT_CREATE_REQUEST: // Currenlty (loading: true) fetching the data
+            return {loading: true}
+        case PRODUCT_CREATE_SUCCESS: // Fetched the data successfully -> products contain the payload data
+            return {loading: false, success: true, product: action.payload}
+        case PRODUCT_CREATE_FAIL: // Failed to fetch data
+            return {loading: false, error: action.payload}
+        case PRODUCT_CREATE_RESET:
+            return {}
         default:
             return state
     } 
