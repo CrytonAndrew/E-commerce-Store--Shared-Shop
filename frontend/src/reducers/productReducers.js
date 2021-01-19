@@ -11,7 +11,11 @@ import {
        PRODUCT_CREATE_REQUEST,
        PRODUCT_CREATE_SUCCESS,
        PRODUCT_CREATE_FAIL,
-       PRODUCT_CREATE_RESET
+       PRODUCT_CREATE_RESET,
+       PRODUCT_UPDATE_REQUEST,
+       PRODUCT_UPDATE_SUCCESS,
+       PRODUCT_UPDATE_FAIL,
+       PRODUCT_UPDATE_RESET,
     } from '../constants/productConstants'
 
 //Handles state for the product list that we see on the Home Screen
@@ -69,6 +73,22 @@ export const productCreateReducer = (state = {}, action) => {
         case PRODUCT_CREATE_FAIL: // Failed to fetch data
             return {loading: false, error: action.payload}
         case PRODUCT_CREATE_RESET:
+            return {}
+        default:
+            return state
+    } 
+}
+
+export const productUpdateReducer = (state = {}, action) => {
+    // Evaluate the action 
+    switch (action.type) {
+        case PRODUCT_UPDATE_REQUEST: // Currenlty (loading: true) fetching the data
+            return {loading: true}
+        case PRODUCT_UPDATE_SUCCESS: // Fetched the data successfully -> products contain the payload data
+            return {loading: false, success: true, product: action.payload}
+        case PRODUCT_UPDATE_FAIL: // Failed to fetch data
+            return {loading: false, error: action.payload}
+        case PRODUCT_UPDATE_RESET:
             return {}
         default:
             return state
