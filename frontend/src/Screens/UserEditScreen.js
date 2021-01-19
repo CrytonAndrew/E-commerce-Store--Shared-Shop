@@ -21,7 +21,7 @@ const UserEditScreen = ({match, history}) => {
     const {loading, error, user} = userDetails
 
     const userUpdate= useSelector(state => state.userUpdate)
-    const {loading: loaidingUpdate, error: errorUpdate, success: successUpdate} = userUpdate
+    const {loading: loadingUpdate, error: errorUpdate, success: successUpdate} = userUpdate
 
     // If the user is already logged in then don't show login screen
     useEffect(() => {
@@ -54,7 +54,7 @@ const UserEditScreen = ({match, history}) => {
             <FormContainer>
 
             <h2>Update User</h2>
-            {loaidingUpdate && <Loader/>} 
+            {loadingUpdate && <Loader/>} 
             {errorUpdate && <Message variant="danger">{error}</Message>}
                 {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                    

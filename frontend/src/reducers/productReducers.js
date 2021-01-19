@@ -79,7 +79,7 @@ export const productCreateReducer = (state = {}, action) => {
     } 
 }
 
-export const productUpdateReducer = (state = {}, action) => {
+export const productUpdateReducer = (state = {product: {}}, action) => {
     // Evaluate the action 
     switch (action.type) {
         case PRODUCT_UPDATE_REQUEST: // Currenlty (loading: true) fetching the data
@@ -89,7 +89,9 @@ export const productUpdateReducer = (state = {}, action) => {
         case PRODUCT_UPDATE_FAIL: // Failed to fetch data
             return {loading: false, error: action.payload}
         case PRODUCT_UPDATE_RESET:
-            return {}
+            return {
+                product: { }
+            }
         default:
             return state
     } 

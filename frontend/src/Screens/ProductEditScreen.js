@@ -4,8 +4,9 @@ import {Form, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
-import { listProductDetails } from '../actions/productActions.js'
+import { listProductDetails, updateProduct } from '../actions/productActions.js'
 import FormContainer from '../components/FormContainer.js'
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants.js'
 
 
 const ProductEditScreen = ({match, history}) => {
@@ -26,28 +27,45 @@ const ProductEditScreen = ({match, history}) => {
     const productDetails = useSelector(state => state.productDetails)
     const {loading, error, product} = productDetails
 
-    // const userUpdate= useSelector(state => state.userUpdate)
-    // const {loading: loaidingUpdate, error: errorUpdate, success: successUpdate} = userUpdate
+    const productUpdate = useSelector(state => state.productUpdate)
+    const {loading: loadingUpdate, error: errorUpdate, success: successUpdate} = productUpdate
+
 
     // If the user is already logged in then don't show login screen
     useEffect(() => {
-        if (!product.name || product._id !== productId) {
-            dispatch(listProductDetails(productId))
+        if(successUpdate) {
+            dispatch({type: PRODUCT_UPDATE_RESET})
+            history.push("/admin/productlist")
         }
         else {
-            setName(product.name)
-            setPrice(product.price)
-            setBrand(product.brand)
-            setDescription(product.description)
-            setCategory(product.category)
-            setCountInStock(product.countInStock)
-            setImage(product.image)
+            if (!product.name || product._id !== productId) {
+                dispatch(listProductDetails(productId))
+            }
+            else {
+                setName(product.name)
+                setPrice(product.price)
+                setBrand(product.brand)
+                setDescription(product.description)
+                setCategory(product.category)
+                setCountInStock(product.countInStock)
+                setImage(product.image)
+            }
         }
-    }, [dispatch, history, product, productId])
+        
+    }, [dispatch, history, product, productId, successUpdate])
  
     const submitHandler = (e) => {
         e.preventDefault()
-        
+        dispatch(updateProduct({
+            _id: productId,
+            name,
+            price,
+            image,
+            brand,
+            category,
+            description,
+            countInStock
+        }))
     }
 
     return (
@@ -58,13 +76,13 @@ const ProductEditScreen = ({match, history}) => {
             <FormContainer>
 
             <h2>Edit Product</h2>
-            {/* {loaidingUpdate && <Loader/>} 
-            {errorUpdate && <Message variant="danger">{error}</Message>} */}
+            {loadingUpdate && <Loader/>} 
+            {errorUpdate && <Message variant="danger">{error}</Message>}
                 {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                    
                     <Form onSubmit={submitHandler}>
                     <Form.Group controlId='name'>
-                        <Form.Label>Full Name</Form.Label>
+                        <Form.Label>Product Name</Form.Label>
                         <Form.Control 
                         type='name' 
                         placeholder="Enter product name" 
@@ -74,7 +92,7 @@ const ProductEditScreen = ({match, history}) => {
                     </Form.Group>
 
                     <Form.Group controlId='price'>
-                        <Form.Label>Email Address</Form.Label>
+                        <Form.Label>Product Price</Form.Label>
                         <Form.Control 
                         type='number' 
                         placeholder="Enter price" 
@@ -85,12 +103,12 @@ const ProductEditScreen = ({match, history}) => {
 
                     <Form.Group controlId='image'>
                     <Form.Label>Image: </Form.Label>
-                        <Form.Check
+                        <Form.Control
                         type='text' 
                         label="Image url"
-                        checked={image}
-                        onChange={(e) => setImage(e.target.checked)}
-                        ></Form.Check>
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                        ></Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId='brand'>
@@ -126,7 +144,7 @@ const ProductEditScreen = ({match, history}) => {
                     <Form.Group controlId='description'>
                         <Form.Label>Description</Form.Label>
                         <Form.Control 
-                        type='number' 
+                        type='text' 
                         placeholder="Enter description" 
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)}>
