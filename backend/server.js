@@ -35,7 +35,7 @@ app.get("/api/config/paypal", (req, res) => res.send(process.env.PAYPAL_CLIENT_I
 
 // The uploads folder is not accessible by defualt,
 // so it needs to be stack for it to be read by browser
-__dirname = path.resolve()
+const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use(notFound)
