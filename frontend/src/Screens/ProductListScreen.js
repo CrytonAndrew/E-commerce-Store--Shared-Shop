@@ -54,7 +54,7 @@ const UserListScreen = ({history, match}) => {
         <Row className="align-items-center">
             <Col>
                 <h1>
-                    Produucts
+                    Products
                 </h1>
             </Col>
             <Col className="text-right">

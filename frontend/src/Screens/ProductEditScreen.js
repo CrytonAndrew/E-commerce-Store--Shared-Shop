@@ -13,13 +13,13 @@ import axios from 'axios'
 const ProductEditScreen = ({match, history}) => {
     const productId = match.params.id
 
-    const [name, setName] = useState('')
+    const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
-    const [brand, setBrand] = useState('')
-    const [description, setDescription] = useState('')
-    const [category, setCategory] = useState('')
+    const [image, setImage] = useState("")
+    const [brand, setBrand] = useState("")
+    const [description, setDescription] = useState("")
+    const [category, setCategory] = useState("")
     const [countInStock, setCountInStock] = useState(0)
-    const [image, setImage] = useState('')
     const [uploading, setUploading] = useState(false)
 
 
@@ -29,7 +29,11 @@ const ProductEditScreen = ({match, history}) => {
     const {loading, error, product} = productDetails
 
     const productUpdate = useSelector(state => state.productUpdate)
-    const {loading: loadingUpdate, error: errorUpdate, success: successUpdate} = productUpdate
+    const {
+        loading: loadingUpdate, 
+        error: errorUpdate, 
+        success: successUpdate
+    } = productUpdate
 
 
     // If the user is already logged in then don't show login screen
@@ -45,11 +49,11 @@ const ProductEditScreen = ({match, history}) => {
             else {
                 setName(product.name)
                 setPrice(product.price)
-                setBrand(product.brand)
-                setDescription(product.description)
-                setCategory(product.category)
-                setCountInStock(product.countInStock)
                 setImage(product.image)
+                setBrand(product.brand)
+                setCategory(product.category)
+                setDescription(product.description)
+                setCountInStock(product.countInStock)   
             }
         }
         
@@ -58,9 +62,8 @@ const ProductEditScreen = ({match, history}) => {
     const uploadHandler = async (e) => {
         const file = e.target.files[0] // Get first file
         const formData = new FormData()
-        formData.append('Image', file)
+        formData.append("image", file)
         setUploading(true)
-
         try  {
             const config = {
                 headers: {
@@ -80,7 +83,8 @@ const ProductEditScreen = ({match, history}) => {
  
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateProduct({
+        dispatch(
+            updateProduct({
             _id: productId,
             name,
             price,
@@ -131,6 +135,7 @@ const ProductEditScreen = ({match, history}) => {
                     <Form.Label>Image: </Form.Label>
                         <Form.Control
                         type='text' 
+                        placeholder="Enter image url"
                         label="Image url"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}

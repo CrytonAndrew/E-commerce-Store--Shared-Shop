@@ -50,7 +50,7 @@ const createProduct = asyncHandler(async (req, res)=> {
         name: "Sample Name",
         price: 0,
         user: req.user._id,
-        image: '/images/sample.jpg',
+        image: "/images/sample.jpg",
         brand: "Sample Brand",
         category: "Sample Category",
         countInStock: 0,
@@ -86,7 +86,6 @@ const updateProduct = asyncHandler(async (req, res)=> {
     else {
         res.status(404).json("Product Not Found")
     }
- 
 })
 
 
