@@ -7,7 +7,7 @@ import Loader from '../components/Loader.js'
 import {PRODUCT_CREATE_RESET} from "../constants/productConstants"
 import {listProducts, deleteProduct, createProduct,} from "../actions/productActions"
 
-const UserListScreen = ({history, match}) => {
+const ProductListScreen = ({history, match}) => {
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
@@ -110,4 +110,4 @@ const UserListScreen = ({history, match}) => {
     )
 }
 
-export default UserListScreen
+export default ProductListScreen
