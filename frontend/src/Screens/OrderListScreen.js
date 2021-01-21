@@ -4,7 +4,6 @@ import {Button,Table, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
-import {ORDER_LIST_RESET} from "../constants/orderConstants"
 import {listOrders} from "../actions/orderActions"
 
 const OrderListScreen = ({history}) => {
@@ -18,9 +17,6 @@ const OrderListScreen = ({history}) => {
     const {userInfo} = userLogin
 
     useEffect(() => {
-        dispatch({ type: ORDER_LIST_RESET })
-        //Check whether a user is admin -> Then showing the screen
-        //Otherwise redirects to login screen if not logged in
         if (!userInfo.isAdmin) {
             history.push("/login")
         }
