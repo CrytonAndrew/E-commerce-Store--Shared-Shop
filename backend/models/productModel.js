@@ -13,6 +13,11 @@ const reviewSchema = mongoose.Schema({
         type: String, 
         required: true
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId, //Only admins can add products, however wanna know which admin created the object
+        required: true,
+        ref: 'User' //Relationship between product and User, referencing a specific model
+    },
 }, {timestamps: true})
 
 

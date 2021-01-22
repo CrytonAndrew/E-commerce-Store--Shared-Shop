@@ -4,6 +4,7 @@ import path from 'path'
 import express from 'express'
 import dotenv from "dotenv"
 import colors from 'colors'
+import morgan from "morgan" // Logger -> Prints all routes 
 import connectDB from "./config/db.js"
 import {notFound, errorHandler} from "./middleware/errorMiddleware.js"
 
@@ -17,6 +18,11 @@ dotenv.config()
 connectDB()
 
 const app = express()
+
+//Run in development mode 
+if(process.env.NODE_ENV == "development") {
+    app.use(morgan('dev'))
+}
 
 app.use(express.json()) //This is an alternative to body parser ->  Allowing us to accept JSON data 
 
