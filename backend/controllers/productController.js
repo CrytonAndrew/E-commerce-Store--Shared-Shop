@@ -8,6 +8,11 @@ const getProducts = asyncHandler(async (req, res) => {
     //Querying for data from the database since we have already used a seeder to import data 
     //await is used since we not using the .then syntax 
 
+    //Pagination
+    const pageSize = 4 // Number of products perPage
+    const page  = Number(req.query.pageNumber) || 1
+
+
     // Account for when searching or else return all products
     // Test for query strings, use of a question mark '?' -> `/api/products?keyword=${keyword}`
     const keyword = req.query.keyword ? {
@@ -17,9 +22,13 @@ const getProducts = asyncHandler(async (req, res) => {
         }
     } : {}
 
-    const products = await Product.find({...keyword})
+    const count = await Product.countDocuments({ ...keyword})
 
-    res.json(products) //Converts it into the json format file 
+    // If page 1 we get the first limit of products,
+    // if page 2 we get another limit per page without page 1 products
+    const products = await Product.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)) 
+
+    res.json({products, page, pages: Math.ceil(count / pageSize)}) //Converts it into the json format file 
 })
 
 // @desc Fecth single product
