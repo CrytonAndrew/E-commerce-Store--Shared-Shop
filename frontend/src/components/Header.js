@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from "react-router-dom"
 import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap'
 // To bring in anything from the state it useSelector
 // To call an action its useDispatch
@@ -9,6 +10,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {LinkContainer} from "react-router-bootstrap";
 
 import {logout} from '../actions/userActions.js'
+
+import SearchBox from "./SearchBox"
 
 
 //React arrow function component 
@@ -38,7 +41,8 @@ const Header = () => {
         </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-
+            <Route render = {({history}) => <SearchBox history={history}/>} /> 
+            
             {/* Move the following links to the left */}
             {/* We use font awesome to style our icons */}
                 <Nav className="ml-auto"> 

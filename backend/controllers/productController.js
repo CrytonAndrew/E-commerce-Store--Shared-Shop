@@ -2,12 +2,22 @@ import asyncHandler from 'express-async-handler'
 import Product from "../models/productModel.js"
 
 // @desc Fecth all products 
-// @route GET /api/producst
+// @route GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
     //Querying for data from the database since we have already used a seeder to import data 
     //await is used since we not using the .then syntax 
-    const products = await Product.find({})
+
+    // Account for when searching or else return all products
+    // Test for query strings, use of a question mark '?' -> `/api/products?keyword=${keyword}`
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword, //Regex allows for filtering with out having to put in the whole name
+            $options: "i"
+        }
+    } : {}
+
+    const products = await Product.find({...keyword})
 
     res.json(products) //Converts it into the json format file 
 })

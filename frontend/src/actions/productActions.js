@@ -30,12 +30,12 @@ import {
 // The function below is an Action creator:
 // {PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_REQUEST} -> These are the actions created 
 
-export const listProducts = () => async (dispatch) => { // Thunk allows us to create asynchronous function (functions within functions)
+export const listProducts = (keyword = "") => async (dispatch) => { // Thunk allows us to create asynchronous function (functions within functions)
     try {
         // Dispatch the request -> Calls in the reducer -> Sets loading to true
         dispatch({type: PRODUCT_LIST_REQUEST})
 
-        const {data} = await axios.get('/api/products') // Fetching the data
+        const {data} = await axios.get(`/api/products?keyword=${keyword}`) // Fetching the data
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS, //Data recieved -> Calls reducer filling in the payload 

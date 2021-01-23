@@ -7,17 +7,21 @@ import Loader from '../components/Loader'
 import {listProducts} from '../actions/productActions'
 
 
-const HomeScreen = () => {
+const HomeScreen = ({match}) => {
+    const keyword = match.params.keyword
+
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
     const {loading, error, products} = productList
 
+
+
     // This function is used to make requests to our back-end 
     // Within it we can use axios to make requests 
     useEffect(() => {
-       dispatch(listProducts())
-    }, [dispatch])
+       dispatch(listProducts(keyword))
+    }, [dispatch, keyword])
 
     return (
         <>
