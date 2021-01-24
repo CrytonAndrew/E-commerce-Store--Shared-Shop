@@ -7,6 +7,7 @@ import {listProductDetails, createProductReview} from "../actions/productActions
 import Loader from "../components/Loader"
 import Message from "../components/Message"
 import {PRODUCT_CREATE_REVIEW_RESET} from "../constants/productConstants"
+import Meta from "../components/Meta.js"
 
  
 // "match" is used to access the param property that stores the id from the link of product chosen
@@ -54,6 +55,7 @@ const ProductScreen = (props) => {
 
     return (
         <>
+        <Meta description={product.description} title={product.name} keywords={product.name} />
             <Link className="btn btn-dark my-3" to="/">Go Back</Link>
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : ( <>
                 <Row>

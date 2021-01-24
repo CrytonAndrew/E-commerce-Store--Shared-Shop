@@ -6,6 +6,8 @@ import Message from "../components/Message"
 import Loader from '../components/Loader'
 import {listProducts} from '../actions/productActions'
 import Paginate from "../components/Paginate"
+import ProductCarousel from "../components/ProductCarousel"
+import Meta from "../components/Meta"
 
 
 const HomeScreen = ({match}) => {
@@ -27,6 +29,8 @@ const HomeScreen = ({match}) => {
 
     return (
         <>
+        <Meta description="The shop where you find the best products for the best price" title="Welcome | Home" keywords="Electronics, Techonolgy, Best Prices"/>
+        {!keyword && <ProductCarousel />}
            <h1>Latest products</h1> 
            {loading  ? <Loader /> : error ? <Message variant="danger">{error}</Message> : 
            (
