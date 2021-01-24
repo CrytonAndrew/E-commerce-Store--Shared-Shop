@@ -12,6 +12,7 @@ import productRoutes from "./routes/productRouters.js"
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from "./routes/orderRoutes.js"
 import uploadRoutes from "./routes/uploadRoutes.js"
+import e from 'express'
 
 dotenv.config()
 
@@ -26,9 +27,13 @@ if(process.env.NODE_ENV == "development") {
 
 app.use(express.json()) //This is an alternative to body parser ->  Allowing us to accept JSON data 
 
+// Will be deleted when deploying
 app.get("/", (req, res) => {
     res.send("API running...")
 })
+
+const __dirname = path.resolve()
+
 
 // Using the productsRoute when needed
 app.use("/api/products", productRoutes);
@@ -41,7 +46,7 @@ app.get("/api/config/paypal", (req, res) => res.send(process.env.PAYPAL_CLIENT_I
 
 // The uploads folder is not accessible by defualt,
 // so it needs to be stack for it to be read by browser
-const __dirname = path.resolve()
+
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
 
 app.use(notFound)
