@@ -18,14 +18,32 @@ h3 {
   padding: 1rem;
 }
 
+footer {
+  background-color: aquamarine;
+}
+
+li {
+  list-style-type: none;
+}
 /* Adds spacing between the star */
 .rating span {
   margin: 0.1rem;
 }
 
+/* Footer lists */
+
+.lists {
+  margin-right: 20px;
+  text-align: left;
+}
+
+.main-footer {
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+
 /* Carousel */
 
-/* carousel */
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
