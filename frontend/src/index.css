@@ -75,6 +75,31 @@ li {
   padding-left: 35px;
 }
 
+/* Our Values  */
+.our-values-list-item {
+  color: teal;
+  display: inline-block;
+  font-size: 30px;
+  height: 50px;
+  line-height: 25px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: opacity 300ms;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  width: 100px;
+}
+
+.our-values-list {
+  font-weight: 500;
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+  padding-left: 100px;
+  padding-top: 15px;
+}
 /* Carousel */
 
 .carousel-item-next,

@@ -18,6 +18,7 @@ import UserEditScreen from "./Screens/UserEditScreen"
 import ProductListScreen from "./Screens/ProductListScreen"
 import ProductEditScreen from "./Screens/ProductEditScreen"
 import OrderListScreen from "./Screens/OrderListScreen"
+import AboutScreen from "./Screens/AboutScreen"
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
          {/* If you wanna add it to the search as well */}
          <Route path="/search/:keyword/page/:pageNumber" component={HomeScreen} exact/>
          <Route path="/" component={HomeScreen} exact/>
+
+         <Route path="/about" component={AboutScreen}/>
         </Container>
       </main>
       <Footer />
