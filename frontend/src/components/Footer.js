@@ -8,8 +8,19 @@ const Footer = () => {
             <div className="main-footer">
                 <Row>
                     <Col >
-                        <h4>Company Name</h4>
-                        
+                        <h4>Shared Shop</h4>
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Vivamus et sollicitudin lacus. Aenean gravida eu tortor at tempus.
+                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Etiam at pretium mi. 
+                        </p>
+                        <ul className="footer-socials">
+                            <li className="footer-social-item"><i class="fab fa-twitter-square"></i></li>
+                            <li className="footer-social-item"><i class="fab fa-facebook-square"></i></li>
+                            <li className="footer-social-item"><i class="fab fa-youtube-square"></i></li>
+                            <li className="footer-social-item"><i class="fab fa-instagram-square"></i></li>
+                        </ul>
                     </Col>
                     <Col >
                     <h4 className="footer-titles">Account Info</h4>
@@ -33,14 +44,12 @@ const Footer = () => {
                     </div>  
                     </Col>
                     <Col>
-                    <h4 className="footer-titles">Who is Shared Shop</h4>
+                    <h4 className="footer-titles">About Us</h4>
                     <div className="lists">
                         <ul>
-                            <li>Loren Ipsum</li>
-                            <li>Loren Ipsum</li>
-                            <li>Loren Ipsum</li>
-                            <li>Loren Ipsum</li>
-                            <li>Loren Ipsum</li>
+                            <li>About Us</li>
+                            <li>Blog</li>
+                            <li>Terms & Conditions</li>
                         </ul>
                     </div>   
                     </Col>
