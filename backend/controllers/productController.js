@@ -9,7 +9,7 @@ const getProducts = asyncHandler(async (req, res) => {
     //await is used since we not using the .then syntax 
 
     //Pagination
-    const pageSize = 4 // Number of products perPage
+    const pageSize = 10 // Number of products perPage
     const page  = Number(req.query.pageNumber) || 1
 
 

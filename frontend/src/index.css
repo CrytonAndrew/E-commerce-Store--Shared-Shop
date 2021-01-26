@@ -19,7 +19,7 @@ h3 {
 }
 
 footer {
-  background-color: #c0dcec;
+  background-color: #dfe4e8;
 }
 
 a {
@@ -99,6 +99,41 @@ li {
   margin: 0;
   padding-left: 100px;
   padding-top: 15px;
+}
+
+/* Contact Us Page  */
+
+.contact-us-main {
+  text-align: center;
+}
+
+.contact-us-list {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+}
+
+.contact-us-list-item {
+  color: teal;
+  display: inline-block;
+  font-size: 25px;
+  height: 50px;
+  line-height: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: opacity 300ms;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  width: 70px;
+}
+
+.contact-us-form {
+  background-color: aquamarine;
+  padding-left: 40px;
+  padding-top: 25px;
+  padding-bottom: 40px;
 }
 /* Carousel */
 

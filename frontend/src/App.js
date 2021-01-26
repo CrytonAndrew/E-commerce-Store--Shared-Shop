@@ -19,6 +19,7 @@ import ProductListScreen from "./Screens/ProductListScreen"
 import ProductEditScreen from "./Screens/ProductEditScreen"
 import OrderListScreen from "./Screens/OrderListScreen"
 import AboutScreen from "./Screens/AboutScreen"
+import ContactScreen from "./Screens/ContactScreen"
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
          <Route path="/" component={HomeScreen} exact/>
 
          <Route path="/about" component={AboutScreen}/>
+         <Route path="/contact" component={ContactScreen}/>
         </Container>
       </main>
       <Footer />

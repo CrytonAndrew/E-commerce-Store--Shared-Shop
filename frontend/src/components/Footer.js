@@ -17,19 +17,19 @@ const Footer = () => {
                         Etiam at pretium mi. 
                         </p>
                         <ul className="footer-socials">
-                            <li className="footer-social-item"><i class="fab fa-twitter-square"></i></li>
-                            <li className="footer-social-item"><i class="fab fa-facebook-square"></i></li>
-                            <li className="footer-social-item"><i class="fab fa-youtube-square"></i></li>
-                            <li className="footer-social-item"><i class="fab fa-instagram-square"></i></li>
+                            <Link><li className="footer-social-item"><i class="fab fa-twitter-square"></i></li></Link>
+                            <Link><li className="footer-social-item"><i class="fab fa-facebook-square"></i></li></Link>
+                            <Link><li className="footer-social-item"><i class="fab fa-youtube-square"></i></li></Link>
+                            <Link><li className="footer-social-item"><i class="fab fa-instagram-square"></i></li></Link>
                         </ul>
                     </Col>
                     <Col >
                     <h4 className="footer-titles">Account Info</h4>
                     <div className="lists">
                         <ul>
-                            <li>Profile</li>
-                            <li>My Cart</li>
-                            <li>My Orders</li>
+                            <li><Link>Profile</Link></li>
+                            <li><Link>My Cart</Link></li>
+                            <li><Link>My Orders</Link></li>
                         </ul>
                     </div>  
                     </Col>
@@ -37,10 +37,15 @@ const Footer = () => {
                     <h4 className="footer-titles">Need Help?</h4>
                     <div className="lists">
                         <ul>
-                            <li>Help</li>
-                            <li>Contact Info</li>
-                            <li>Product Requests</li>
-                            <li>Our Warehouse</li>
+                            <li>
+                                <Link to="/help">Help</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Get In Touch</Link>
+                            </li>
+                            <li>
+                                <Link>Product Requests</Link>
+                            </li>
                         </ul>
                     </div>  
                     </Col>
@@ -51,8 +56,12 @@ const Footer = () => {
                             <li>
                                <Link to="/about">About Us</Link> 
                             </li>
-                            <li>Blog</li>
-                            <li>Terms & Conditions</li>
+                            <li>
+                                <Link to="/about/blog">Blog</Link>
+                            </li>
+                            <li>
+                                <Link to="/terms&conditions">Terms & Conditions</Link>
+                            </li>
                         </ul>
                     </div>   
                     </Col>
