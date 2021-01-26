@@ -15,17 +15,6 @@ const ContactScreen = () => {
             <div>
                 <p>Contact us for more inforamtion <br/>or fill in the form below and we will get back to you</p>
             </div>
-            {/* <ul className="contact-us-list">
-                <li className="contact-us-list-item" >
-                    <Link><i className="fas fa-map-marker-alt" ></i></Link>
-                </li>
-                <li className="contact-us-list-item">
-                    <Link><i className="fas fa-phone-alt"></i></Link>
-                </li>
-                <li className="contact-us-list-item">
-                    <Link><i className="fas fa-envelope"></i></Link>
-                </li>
-            </ul> */}
         </div>
 
         <div className="contact-us-form">        
@@ -66,7 +55,14 @@ const ContactScreen = () => {
             </Col>
 
             <Col>
-
+                <h3>Contact Info</h3>
+                    <div className="contact-us-list">
+                    <Link><i className="fas fa-map-marker-alt contact-us-item" >  101 Main St, Gauteng</i></Link>
+                    <br></br>
+                    <Link><i className="fas fa-phone-alt contact-us-item">  +27 123 123 1234</i></Link>
+                    <br></br>
+                    <Link><i className="fas fa-envelope contact-us-item">  @info@email.com</i></Link> 
+                    </div>
             </Col>
         </Row>  
         </div>      

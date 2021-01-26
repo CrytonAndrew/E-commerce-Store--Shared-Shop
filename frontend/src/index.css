@@ -107,26 +107,15 @@ li {
   text-align: center;
 }
 
-.contact-us-list {
-  list-style-type: none;
-  display: inline-block;
-  margin: 0;
+.contact-us-item {
+  padding-top: 20px;
 }
 
-.contact-us-list-item {
-  color: teal;
-  display: inline-block;
-  font-size: 25px;
-  height: 50px;
-  line-height: 20px;
-  overflow: hidden;
-  text-decoration: none;
-  transition: opacity 300ms;
-  transition-property: opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  transition-delay: 0s;
-  width: 70px;
+.contact-us-list {
+  font-size: 15px;
+  list-style-type: none;
+  display: list-item;
+  margin-left: 15px;
 }
 
 .contact-us-form {
