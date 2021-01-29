@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from "react-router-dom"
-import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap'
+import {Container, Navbar, Nav, NavDropdown, Button} from 'react-bootstrap'
 // To bring in anything from the state it useSelector
 // To call an action its useDispatch
 import {useDispatch, useSelector} from 'react-redux'
@@ -27,7 +27,7 @@ const Header = () => {
 
     return (
         <header>
-        <Navbar bg="light" expand="lg" collapseOnSelect>
+        <Navbar bg="primary"   expand="lg" collapseOnSelect>
         <Container>
         <LinkContainer to="/">
             <Navbar.Brand><img
@@ -47,7 +47,7 @@ const Header = () => {
             {/* We use font awesome to style our icons */}
                 <Nav className="ml-auto"> 
                 <LinkContainer to="/cart">
-                <Nav.Link><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
+                <Button variant="light"><i className="fas fa-shopping-cart"></i>Cart</Button>
                 </LinkContainer>
                 {userInfo ? (
                     <NavDropdown title ={ userInfo.name} id='userName'>
@@ -60,7 +60,7 @@ const Header = () => {
                     </NavDropdown>
                 ) : (
                     <LinkContainer to="/login">
-                    <Nav.Link><i className="fas fa-user"></i>Sign In</Nav.Link>
+                    <Button variant="info"><i className="fas fa-user"></i>Sign In</Button>
                     </LinkContainer>) 
                 }
                 {userInfo && userInfo.isAdmin && (

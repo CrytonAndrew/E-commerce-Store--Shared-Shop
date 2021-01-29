@@ -24,6 +24,7 @@ footer {
 
 a {
   cursor: pointer;
+  color: black;
 }
 
 li {
@@ -119,7 +120,7 @@ li {
 }
 
 .contact-us-form {
-  background-color: aquamarine;
+  background-color: grey;
   padding-left: 40px;
   padding-top: 25px;
   padding-bottom: 40px;
