@@ -156,6 +156,12 @@ const getTopProducts = asyncHandler(async (req, res)=> {
     res.json(products)
 })
 
+// @desc Get Electronics Category
+// @route GET /api/products/electronics
+// @access Public
+const getProductsByCategoryElectronics = asyncHandler(async (req, res) => {
+    const products = await Product.find({category: "Electronics"})
+    res.json(products)
+})
 
-
-export {getProducts, getProductById, deleteProduct, updateProduct, createProduct, createProductReview, getTopProducts}
+export {getProducts, getProductById, deleteProduct, updateProduct, createProduct, createProductReview, getTopProducts, getProductsByCategoryElectronics}
