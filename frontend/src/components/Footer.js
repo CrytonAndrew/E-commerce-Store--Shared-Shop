@@ -1,8 +1,11 @@
 import React from 'react'
+import {useSelector} from "react-redux"
 import {Container, Row, Col} from "react-bootstrap";
 import {Link} from "react-router-dom"
 
 const Footer = () => {
+    const userLogin = useSelector((state) => state.userLogin)
+    const {userInfo} = userLogin
     return (
         <footer>
             <Container>
@@ -26,11 +29,19 @@ const Footer = () => {
                     <Col >
                     <h4 className="footer-titles">Account Info</h4>
                     <div className="lists">
-                        <ul>
-                            <li><Link>Profile</Link></li>
-                            <li><Link>My Cart</Link></li>
-                            <li><Link>My Orders</Link></li>
+                        {userInfo ? (
+                            <ul>
+                            <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/cart">My Cart</Link></li>
+                            <li><Link to="/profile">My Orders</Link></li>
                         </ul>
+                        ) : (
+                            <ul>
+                            <li><Link to="/login">Profile</Link></li>
+                            <li><Link to="/login">My Cart</Link></li>
+                            <li><Link to="/login">My Orders</Link></li>
+                        </ul>
+                        )}
                     </div>  
                     </Col>
                     <Col >

@@ -24,10 +24,11 @@ const CartScreen = ({match, location, history}) => {
     const {cartItems} = cart
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (productId) {
             dispatch(addToCart(productId, qty))
         }
-    }, [dispatch, productId, qty])
+    }, [dispatch, productId, qty]) 
 
 
     const removeFromCartHandler = (id) => {
