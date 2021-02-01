@@ -21,10 +21,14 @@ h3 {
 footer {
   background-color: #dfe4e8;
 }
-
 a {
-  cursor: pointer;
   color: black;
+}
+
+a:hover {
+  cursor: pointer;
+  color: teal;
+  text-decoration: none;
 }
 
 li {
