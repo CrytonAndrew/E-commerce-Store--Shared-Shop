@@ -49,13 +49,13 @@ const Footer = () => {
                     <div className="lists">
                         <ul>
                             <li>
-                                <Link to="/help">Help</Link>
+                                <Link to="/contact/help">Help</Link>
                             </li>
                             <li>
                                 <Link to="/contact">Get In Touch</Link>
                             </li>
                             <li>
-                                <Link>Product Requests</Link>
+                                <Link to="/contact">Product Requests</Link>
                             </li>
                         </ul>
                     </div>  
