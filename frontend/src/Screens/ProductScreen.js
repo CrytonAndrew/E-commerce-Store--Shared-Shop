@@ -71,7 +71,7 @@ const ProductScreen = (props) => {
                             <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                         </ListGroupItem>
                         <ListGroupItem>
-                            Price: ${product.price}
+                            Price: R{product.price}
                         </ListGroupItem>
                         <ListGroupItem>
                             Description: {product.description}

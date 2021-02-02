@@ -55,7 +55,7 @@ const CartScreen = ({match, location, history}) => {
                         <Col md={3}>
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                         </Col>
-                        <Col md={2}>${item.price}</Col>
+                        <Col md={2}>R{item.price}</Col>
                         <Col md={2}>
                             <Form.Control as="select" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                                         {[...Array(item.countInStock).keys()].map(x => (
@@ -83,7 +83,7 @@ const CartScreen = ({match, location, history}) => {
             <ListGroup variant="flush">
             <ListGroupItem>
                 <h2>Subtotal ({cartItems.reduce((accumulator, item) => accumulator + item.qty, 0)}) Items</h2>
-                ${cartItems.reduce((accumulator, item) => accumulator + item.qty * item.price, 0).toFixed(2)}
+                R{cartItems.reduce((accumulator, item) => accumulator + item.qty * item.price, 0).toFixed(2)}
             </ListGroupItem>
             <ListGroupItem>
                 <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
